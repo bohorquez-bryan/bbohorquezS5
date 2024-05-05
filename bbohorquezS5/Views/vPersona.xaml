@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="bbohorquezS5.Views.vPersona"
+             Title="Administracion Personas">
+    <ScrollView>
+    <VerticalStackLayout
+        Spacing="25">
+        <StackLayout>
+            <Frame>
+                <Label 
+                Text="CRUD básico SQLite"
+                VerticalOptions="Center" 
+                FontSize="24"
+                HorizontalOptions="Center" />  
+                
+            </Frame>
+        </StackLayout>
+     
+            <Label 
+                Text="Registro de Personas"
+                VerticalOptions="Center" 
+                FontSize="18"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+            />
+            <Label 
+                Text="- Para agregar una persona, ingrese el nombre y presione Insertar"
+                VerticalOptions="Center" 
+                FontSize="12"
+                HorizontalOptions="Start"
+                Margin="50,-15,0,0"
+            />
+            <Label 
+                Text="- Para editar un registro, seleccionarlo después ingrese en el campo de texto el nuevo nombre y presione Editar"
+                VerticalOptions="Center" 
+                FontSize="12"
+                HorizontalOptions="Start"
+                Margin="50,-20,0,0"
+            />
+            <Label 
+                Text="- Para eliminar un registro, seleccionarlo y presione Eliminar"
+                VerticalOptions="Center" 
+                FontSize="12"
+                HorizontalOptions="Start"
+                Margin="50,-25,0,0"
+            />
+
+            <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+                <Label Text="Ingrese el Nombre"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                <Entry
+            x:Name="txtName"
+            Placeholder="Ingrese el nombre"
+            Grid.Row="1"
+            Grid.Column="1"
+            />
+         
+            <CollectionView x:Name="listaPersona"
+                            ItemsSource="{Binding RegistroPersonas}"
+                            SelectionMode="Single"
+                            SelectionChanged="listaPersona_SelectionChanged"
+                            Grid.Row="2"
+                            Grid.ColumnSpan="2">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Id}" Grid.Column="0" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Name}" Grid.Column="1" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button
+                x:Name="btnInsertar"
+                Text="Insertar"
+                Clicked="btnInsertar_Clicked"
+                Grid.Row="3"
+                Grid.Column="0"
+                BackgroundColor="Green"
+                Margin="50,0,0,0"
+                />
+            
+            <Label
+                x:Name="lblStatus"
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                TextColor="DarkRed"
+                HorizontalOptions="CenterAndExpand"
+                FontSize="20"
+                />
+            <Button
+                x:Name="btnObtener"
+                Text="Listar personas"
+                Clicked="btnObtener_Clicked"
+                Grid.Row="3"
+                Grid.Column="1"
+                BackgroundColor="LightCoral"
+                Margin="50,0,0,0"
+                />
+            
+            <Button
+                x:Name="btnEditar"
+                Text="Editar"
+                Clicked="btnEditar_Clicked"
+                Grid.Row="4"
+                Grid.Column="0"
+                Margin="50,0,0,0"/>
+            <Button
+                x:Name="btnEliminar"
+                Text="Eliminar"
+                Clicked="btnEliminar_Clicked"
+                BackgroundColor="DarkRed"
+                Grid.Row="4"
+                Grid.Column="1"
+                Margin="50,0,0,0"/>
+            
+        </Grid>
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
